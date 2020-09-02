@@ -1,0 +1,59 @@
+<html>
+<body>
+    <style>
+        path, circle{
+            stroke-linejoin: round;
+            stroke-width: 20;
+            stroke: whitesmoke;
+            fill: whitesmoke;
+            -webkit-filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .4));
+            filter: drop-shadow( 0px 0px 2px rgba(0, 0, 0, .4));
+            cursor: pointer;
+        }
+        circle{
+            fill: #dfdddd;
+            stroke: #dfdddd;
+            opacity: .8;
+        }
+        svg{
+            padding: 100px;
+        }
+    </style>
+    <svg height="400" width="480">
+        <path d="M 40,360 L 240,30 L 440,360 z" />
+        <circle r="5" cx="-100" cy="-100"/>
+    </svg>
+    <br/>
+    <input style="position: absolute;top: 510px; left: 0px;"/>
+    <br/>
+    <input style="position: absolute;top:83px;   left: 242px;"/>
+    <br/>
+    <input style="position: absolute;top: 510px; left: 450px;"/>
+<script>
+    document.getElementsByTagName('path')[0].addEventListener('click', (e) => {
+        x = e.layerX + 25
+        y = e.layerY + 15
+        document.getElementsByTagName('circle')[0].setAttribute('cx', x)
+        document.getElementsByTagName('circle')[0].setAttribute('cy', y)
+
+        // x   30 - 450       // 420
+        // y   20 - 370       // 350
+        
+        x = x - 30
+        y = y - 20
+
+        absX = (100 * x) / 420
+        absY = (100 * y) / 350
+        
+        var1 = Math.sqrt(absX ** 2 + (100 - absY) ** 2)
+        var2 = Math.sqrt((absX >= 50 ? absX - 50 : 50 - absX) ** 2 + (absY) ** 2)
+        var3 = Math.sqrt((100 - absX) ** 2 + (100 - absY) ** 2)
+
+        document.getElementsByTagName('input')[0].value = var1
+        document.getElementsByTagName('input')[1].value = 110 - var2
+        document.getElementsByTagName('input')[2].value = var3
+    })
+</script>
+</body>
+
+</html>
